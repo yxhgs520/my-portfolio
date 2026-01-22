@@ -3,221 +3,353 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xinhang Yang | Professional Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Xinhang Yang | Engineer</title>
+    
+    <meta property="og:title" content="Xinhang Yang | Engineer Portfolio">
+    <meta property="og:description" content="CS Student at CCNY. Building scalable systems and exploring AI. View my projects and resume.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yxhgs520.github.io/personalweb/">
+    <meta property="og:image" content="https://yxhgs520.github.io/personalweb/preview.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary: #2563eb; 
-            --dark: #0f172a;
-            --light-bg: #f1f5f9;
-            --text-main: #334155;
-            --text-sub: #64748b;
+            /* 极简配色系统 */
+            --bg-color: #fafafa;
             --card-bg: #ffffff;
+            --text-primary: #171717; 
+            --text-secondary: #525252; 
+            --text-tertiary: #a3a3a3; 
+            --accent: #2563eb;       
+            --border: #e5e5e5;
+            --border-hover: #171717; 
+            --shadow-hover: 0 20px 40px -5px rgba(0,0,0,0.08);
+            /* 标签颜色优化 */
+            --tag-bg: #f1f5f9;
+            --tag-text: #2563eb;
         }
 
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+
         body { 
             font-family: 'Inter', sans-serif; 
             margin: 0; padding: 0; 
-            background-color: var(--light-bg); 
-            color: var(--text-main);
+            color: var(--text-primary);
             line-height: 1.6;
+            background-color: var(--bg-color);
+            background-image: radial-gradient(#e5e5e5 1px, transparent 1px);
+            background-size: 24px 24px;
+            min-height: 100vh;
         }
 
         .container {
             display: grid;
-            grid-template-columns: 300px 1fr;
-            max-width: 1100px;
-            margin: 50px auto;
-            gap: 25px;
-            padding: 0 20px;
+            grid-template-columns: 320px 1fr;
+            max-width: 1080px;
+            margin: 80px auto;
+            gap: 48px;
+            padding: 0 24px;
         }
 
-        /* 左侧个人信息栏 */
+        /* --- 左侧 Sidebar --- */
         .sidebar {
-            background: var(--card-bg);
-            padding: 40px 25px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
-            height: fit-content;
             position: sticky;
-            top: 50px;
-            text-align: center;
+            top: 80px;
+            height: fit-content;
         }
 
-        .profile-img {
-            width: 100px; height: 100px;
-            background: linear-gradient(135deg, var(--primary), #3b82f6);
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            display: flex; align-items: center; justify-content: center;
-            color: white; font-size: 32px; font-weight: 700;
-            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
-        }
-
-        .sidebar h1 { font-size: 24px; margin: 0 0 10px; color: var(--dark); }
-        .sidebar p { font-size: 14px; color: var(--text-sub); margin-bottom: 25px; }
+        .profile-header { margin-bottom: 32px; }
         
-        .contact-links { display: flex; flex-direction: column; gap: 12px; }
-        .contact-link { 
-            font-size: 14px; color: var(--text-main); text-decoration: none; 
-            padding: 8px; border-radius: 8px; transition: 0.2s;
-            border: 1px solid #f1f5f9;
-        }
-        .contact-link:hover { background: #eff6ff; color: var(--primary); border-color: #dbeafe; }
-
-        /* 右侧主内容区 */
-        .main-content { display: flex; flex-direction: column; gap: 20px; }
-
-        section {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+        /* 优化后的头像尺寸：更精致 */
+        .profile-avatar {
+            width: 64px; height: 64px;
+            background: #f4f4f5;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px; font-weight: 700; color: var(--text-primary);
+            margin-bottom: 24px;
+            border: 1px solid var(--border);
         }
 
-        h2 { 
-            font-size: 18px; margin: 0 0 20px; 
-            display: flex; align-items: center; color: var(--dark);
-            font-weight: 700;
+        .sidebar h1 { 
+            font-size: 28px; font-weight: 700; letter-spacing: -0.03em; 
+            margin: 0 0 8px 0; color: var(--text-primary);
         }
-        h2::after {
-            content: ""; flex: 1; height: 1px; background: #e2e8f0; margin-left: 20px;
-        }
-
-        /* 时间轴布局 - 解决对齐问题 */
-        .timeline-item {
-            position: relative;
-            padding-left: 25px;
-            border-left: 2px solid #f1f5f9;
-            margin-bottom: 25px;
-        }
-        .timeline-item:last-child { margin-bottom: 0; }
-        .timeline-item::before {
-            content: ""; position: absolute; left: -7px; top: 5px;
-            width: 12px; height: 12px; background: white;
-            border: 2px solid var(--primary); border-radius: 50%;
+        
+        .sidebar .role { 
+            font-size: 15px; color: var(--text-secondary); font-weight: 500; 
+            margin-bottom: 24px; display: block;
         }
 
-        .item-header { 
-            display: flex; justify-content: space-between; align-items: flex-start; 
-            margin-bottom: 5px;
+        .bio {
+            font-size: 14px; color: var(--text-secondary); line-height: 1.7;
+            margin-bottom: 32px;
         }
-        .item-title { font-weight: 600; color: var(--dark); font-size: 16px; }
-        .item-date { font-size: 13px; color: var(--text-sub); }
-        .item-sub { font-size: 14px; color: var(--text-sub); margin-bottom: 8px; }
-        .item-desc { font-size: 14px; margin: 0; color: var(--text-main); }
 
-        /* 项目卡片布局 */
-        .project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        /* 按钮组 */
+        .actions { display: flex; flex-direction: column; gap: 12px; }
+        
+        .btn {
+            display: flex; align-items: center; justify-content: center;
+            padding: 12px; border-radius: 8px; text-decoration: none;
+            font-size: 14px; font-weight: 500; cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--text-primary); color: white;
+            border: 1px solid var(--text-primary);
+        }
+        .btn-primary:hover { background: #333; transform: translateY(-2px); }
+
+        .social-links { margin-top: 32px; display: flex; gap: 16px; }
+        .social-link {
+            color: var(--text-tertiary); font-size: 20px; text-decoration: none;
+        }
+        .social-link:hover { color: var(--text-primary); transform: translateY(-2px); }
+
+        /* --- 右侧内容区 --- */
+        .main-content { display: flex; flex-direction: column; gap: 64px; }
+
+        section h2 {
+            font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+            color: var(--text-tertiary); margin: 0 0 24px 0;
+            display: flex; align-items: center; gap: 12px;
+        }
+        section h2::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+
+        /* Experience 列表 */
+        .experience-list { display: flex; flex-direction: column; gap: 32px; }
+        
+        .exp-item {
+            position: relative; padding-left: 24px;
+            border-left: 1px solid var(--border);
+        }
+        
+        .exp-item::before {
+            content: ""; position: absolute; left: -5px; top: 6px;
+            width: 9px; height: 9px; background: var(--bg-color);
+            border: 2px solid var(--text-tertiary); border-radius: 50%;
+            transition: 0.3s;
+        }
+        .exp-item:hover::before { border-color: var(--accent); background: var(--accent); }
+
+        .exp-header { 
+            display: flex; justify-content: space-between; align-items: baseline; 
+            margin-bottom: 8px; 
+        }
+        .exp-company { font-size: 16px; font-weight: 600; color: var(--text-primary); }
+        .exp-date { font-size: 13px; font-family: monospace; color: var(--text-tertiary); }
+        .exp-role { font-size: 14px; color: var(--text-secondary); margin-bottom: 12px; font-weight: 500; }
+        
+        .exp-desc { 
+            font-size: 14px; color: var(--text-secondary); margin: 0; 
+            padding-left: 0; list-style: none;
+        }
+        .exp-desc li { 
+            position: relative; padding-left: 16px; margin-bottom: 6px; 
+        }
+        .exp-desc li::before { content: "•"; color: var(--text-tertiary); position: absolute; left: 0; }
+        
+        /* 关键数据加粗样式 */
+        strong { color: var(--text-primary); font-weight: 600; }
+
+        /* Projects */
+        .project-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+        
         .project-card {
-            border: 1px solid #f1f5f9; padding: 20px; border-radius: 12px;
-            transition: 0.3s; background: #fff;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px; padding: 24px;
+            position: relative;
         }
-        .project-card:hover { transform: translateY(-3px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); }
-        .project-title { font-weight: 600; color: var(--dark); display: block; margin-bottom: 10px; }
-
-        .tag-group { margin-top: 15px; display: flex; flex-wrap: wrap; gap: 6px; }
-        .tag { 
-            background: #f1f5f9; color: #475569; padding: 4px 10px; 
-            border-radius: 6px; font-size: 11px; font-weight: 600;
+        .project-card:hover {
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-4px);
         }
-        .tag.blue { background: #eff6ff; color: var(--primary); }
 
-        /* 技能标签列表 */
-        .skills-list { display: flex; flex-wrap: wrap; gap: 10px; }
+        .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+        .project-title { font-size: 16px; font-weight: 600; color: var(--text-primary); margin: 0; }
+        .project-link { 
+            font-size: 13px; font-weight: 600; color: var(--text-primary); 
+            text-decoration: none; border-bottom: 1px solid transparent;
+        }
+        .project-link:hover { border-bottom-color: var(--text-primary); }
 
-        /* 响应式调整 */
+        .project-desc { font-size: 14px; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6; }
+
+        .tags { display: flex; gap: 8px; flex-wrap: wrap; }
+        
+        /* 标签视觉优化 */
+        .tag {
+            font-size: 12px; padding: 4px 10px; border-radius: 20px;
+            background: var(--tag-bg); color: var(--tag-text); font-weight: 600;
+        }
+
+        /* Education & Skills */
+        .skills-section {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+            background: white; padding: 24px; border-radius: 12px; border: 1px solid var(--border);
+        }
+        .skill-col h5 { 
+            font-size: 12px; color: var(--text-tertiary); margin: 0 0 12px 0; 
+            text-transform: uppercase; letter-spacing: 0.05em; 
+        }
+        .skill-list { list-style: none; padding: 0; margin: 0; }
+        .skill-list li { 
+            font-size: 14px; color: var(--text-secondary); margin-bottom: 6px; 
+            display: flex; align-items: center; gap: 8px;
+        }
+        .skill-list li i { font-size: 12px; color: var(--text-tertiary); }
+
         @media (max-width: 850px) {
-            .container { grid-template-columns: 1fr; margin: 20px auto; }
-            .sidebar { position: static; }
-            .project-grid { grid-template-columns: 1fr; }
-            .item-header { flex-direction: column; }
+            .container { grid-template-columns: 1fr; margin: 40px auto; gap: 40px; }
+            .sidebar { position: static; text-align: left; }
+            .skills-section { grid-template-columns: 1fr; gap: 32px; }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
+    
     <aside class="sidebar">
-        <div class="profile-img">XY</div>
-        <h1>Xinhang Yang</h1>
-        <p>Computer Science Student @ CCNY<br>Software Engineer & IT Enthusiast</p>
-        
-        <div class="contact-links">
-            <a href="mailto:xyang007@citymail.cuny.edu" class="contact-link">Email</a>
-            <a href="https://github.com/yxhgs520" class="contact-link">GitHub</a>
-            <a href="https://linkedin.com/in/yourusername" class="contact-link">LinkedIn</a>
+        <div class="profile-header">
+            <div class="profile-avatar">XY</div>
+            <h1>Xinhang Yang</h1>
+            <span class="role">CS Student @ CCNY · Developer</span>
+        </div>
+
+        <p class="bio">
+            Building scalable systems and exploring AI. 
+            <br>Focusing on full-stack engineering and cloud infrastructure.
+        </p>
+
+        <div class="actions">
+            <a href="resume.pdf" download class="btn btn-primary">
+                Download Resume
+            </a>
+        </div>
+
+        <div class="social-links">
+            <a href="mailto:yxhgs520@gmail.com" class="social-link" title="Email"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://github.com/yxhgs520" class="social-link" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/xinhang-yang-8384612b7/" class="social-link" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
         </div>
     </aside>
 
     <main class="main-content">
         
-        <section id="education">
-            <h2>Education</h2>
-            <div class="timeline-item">
-                <div class="item-header">
-                    <span class="item-title">The City College of New York (CUNY)</span>
-                    <span class="item-date">Expected Graduation: 2027</span>
-                </div>
-                <div class="item-sub">B.S. in Computer Science | GPA 3.8 / 4.0</div>
-            </div>
-        </section>
-
-        <section id="experience">
+        <section>
             <h2>Experience</h2>
-            <div class="timeline-item">
-                <div class="item-header">
-                    <span class="item-title">Amazon AI Externship</span>
-                    <span class="item-date">Summer 2024</span>
+            <div class="experience-list">
+                
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <span class="exp-company">Amazon</span>
+                        <span class="exp-date">Jun '24 - Aug '24</span>
+                    </div>
+                    <div class="exp-role">AI Extern</div>
+                    <ul class="exp-desc">
+                        <li>Completed intensive ML curriculum covering neural networks.</li>
+                        <li>Deployed practical AI models solving <strong>real-world data problems</strong>.</li>
+                    </ul>
                 </div>
-                <p class="item-desc">Focused on Machine Learning fundamentals, neural network architecture, and data preprocessing.</p>
-            </div>
-            
-            <div class="timeline-item">
-                <div class="item-header">
-                    <span class="item-title">Medical Assistant & IT Support</span>
-                    <span class="item-date">Ongoing</span>
+
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <span class="exp-company">Pediatric Clinic</span>
+                        <span class="exp-date">Jan '23 - Present</span>
+                    </div>
+                    <div class="exp-role">IT Lead & Medical Assistant</div>
+                    <ul class="exp-desc">
+                        <li>Sole technical lead for <strong>1,000+ patient</strong> EMR system.</li>
+                        <li>Maintained <strong>99.9% uptime</strong> via hardware troubleshooting.</li>
+                        <li>Engineered workflow reducing admin time by <strong>15%</strong>.</li>
+                    </ul>
                 </div>
-                <p class="item-desc">Troubleshooting clinic hardware/networking while managing high-stakes patient medical data (EMR).</p>
+
             </div>
         </section>
 
-        <section id="projects">
+        <section>
             <h2>Featured Projects</h2>
             <div class="project-grid">
+                
                 <div class="project-card">
-                    <span class="project-title">Paw Finder Platform</span>
-                    <p class="item-desc">Full-stack platform for lost-and-found pets. Built secure auth system.</p>
-                    <div class="tag-group">
-                        <span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">XAMPP</span>
+                    <div class="project-header">
+                        <h3 class="project-title">Paw Finder Platform</h3>
+                        <a href="https://github.com/yxhgs520" class="project-link">View <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></a>
+                    </div>
+                    <p class="project-desc">Full-stack lost-and-found pet application with secure user authentication and role-based access control.</p>
+                    <div class="tags">
+                        <span class="tag">PHP</span>
+                        <span class="tag">MySQL</span>
+                        <span class="tag">Apache</span>
                     </div>
                 </div>
+
                 <div class="project-card">
-                    <span class="project-title">Sales-Tax Microservice</span>
-                    <p class="item-desc">Serverless API deployed on Google Cloud Run for real-time tax computation.</p>
-                    <div class="tag-group">
-                        <span class="tag blue">Python</span><span class="tag blue">GCP</span><span class="tag blue">API</span>
+                    <div class="project-header">
+                        <h3 class="project-title">Sales-Tax Microservice</h3>
+                        <a href="https://github.com/yxhgs520" class="project-link">View <i class="fa-solid fa-arrow-right" style="font-size: 10px;"></i></a>
                     </div>
+                    <p class="project-desc">Serverless API deployed on Google Cloud Run for real-time tax computation with high availability.</p>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">GCP</span>
+                        <span class="tag">Serverless</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section>
+            <h2>Education & Skills</h2>
+            
+            <div style="margin-bottom: 24px;">
+                <div class="exp-header">
+                    <span class="exp-company">The City College of New York</span>
+                    <span class="exp-date">Exp. 2027</span>
+                </div>
+                <div class="exp-role">B.S. Computer Science (GPA 3.8)</div>
+            </div>
+
+            <div class="skills-section">
+                <div class="skill-col">
+                    <h5>Languages</h5>
+                    <ul class="skill-list">
+                        <li><i class="fa-solid fa-code"></i> Python</li>
+                        <li><i class="fa-solid fa-code"></i> C++</li>
+                        <li><i class="fa-solid fa-code"></i> JavaScript</li>
+                    </ul>
+                </div>
+                <div class="skill-col">
+                    <h5>Stack</h5>
+                    <ul class="skill-list">
+                        <li><i class="fa-solid fa-layer-group"></i> React</li>
+                        <li><i class="fa-solid fa-server"></i> Node.js</li>
+                        <li><i class="fa-solid fa-database"></i> SQL</li>
+                    </ul>
+                </div>
+                <div class="skill-col">
+                    <h5>Tools</h5>
+                    <ul class="skill-list">
+                        <li><i class="fa-brands fa-docker"></i> Docker</li>
+                        <li><i class="fa-brands fa-google"></i> GCP</li>
+                        <li><i class="fa-brands fa-linux"></i> Linux</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
-        <section id="skills">
-            <h2>Technical Skills</h2>
-            <div class="skills-list">
-                <span class="tag">Python</span>
-                <span class="tag">C++</span>
-                <span class="tag">JavaScript</span>
-                <span class="tag">SQL</span>
-                <span class="tag">Linux/Bash</span>
-                <span class="tag">Google Cloud</span>
-            </div>
-        </section>
+        <footer style="margin-top: 80px; font-size: 13px; color: var(--text-tertiary);">
+            © 2027 Xinhang Yang. All rights reserved.
+        </footer>
 
-        <p style="text-align: center; color: #94a3b8; font-size: 12px; margin: 20px 0;">
-            © 2026 Xinhang Yang • Designed for Impact
-        </p>
     </main>
 </div>
 
